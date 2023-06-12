@@ -2,147 +2,98 @@ const express = require("express");
 const app = express();
 const port = 3000
 
-let countries = [
-  {
-    countryName: "United States",
-    capital: "Washington, D.C.",
-    population: 331000000,
-    language: "English",
-    currency: "United States Dollar ($)",
-    img: "",
-  },
-  {
-    countryName: "Canada",
-    capital: "Ottawa",
-    population: 37590000,
-    language: "English, French",
-    currency: "Canadian Dollar ($)",
-    img: "",
-  },
-  {
-    countryName: "Germany",
-    capital: "Berlin",
-    population: 83190556,
-    language: "German",
-    currency: "Euro (€)",
-    img: "",
-  },
-  {
-    countryName: "Japan",
-    capital: "Tokyo",
-    population: 126010000,
-    language: "Japanese",
-    currency: "Japanese Yen (¥)",
-    img: "",
-  },
-  {
-    countryName: "Brazil",
-    capital: "Brasília",
-    population: 211049527,
-    language: "Portuguese",
-    currency: "Brazilian Real (R$)",
-    img: "",
-  },
-  {
-    countryName: "Australia",
-    capital: "Canberra",
-    population: 25687041,
-    language: "English",
-    currency: "Australian Dollar ($)",
-    img: "",
-  },
-  {
-    countryName: "France",
-    capital: "Paris",
-    population: 67060000,
-    language: "French",
-    currency: "Euro (€)",
-    img: "",
-  },
-  {
-    countryName: "China",
-    capital: "Beijing",
-    population: 1444216107,
-    language: "Chinese",
-    currency: "Renminbi (¥)",
-    img: "",
-  },
-  {
-    countryName: "India",
-    capital: "New Delhi",
-    population: 1393409038,
-    language: "Hindi, English",
-    currency: "Indian Rupee (₹)",
-    img: "",
-  },
-  {
-    countryName: "Russia",
-    capital: "Moscow",
-    population: 145912025,
-    language: "Russian",
-    currency: "Russian Ruble (₽)",
-    img: "",
-  },
-  {
-    countryName: "Mexico",
-    capital: "Mexico City",
-    population: 126190788,
-    language: "Spanish",
-    currency: "Mexican Peso ($)",
-    img: "",
-  },
-  {
-    countryName: "United Kingdom",
-    capital: "London",
-    population: 66435600,
-    language: "English",
-    currency: "British Pound (£)",
-    img: "",
-  },
-  {
-    countryName: "South Africa",
-    capital: "Pretoria, Cape Town, Bloemfontein",
-    population: 58775022,
-    language: "Zulu, Xhosa, Afrikaans, English",
-    currency: "South African Rand (R)",
-    img: "",
-  },
-  {
-    countryName: "Saudi Arabia",
-    capital: "Riyadh",
-    population: 34813867,
-    language: "Arabic",
-    currency: "Saudi Riyal (ر.س)",
-    img: "",
-  },
-  {
-    countryName: "Argentina",
-    capital: "Buenos Aires",
-    population: 44938712,
-    language: "Spanish",
-    currency: "Argentine Peso ($)",
-    img: "",
-  },
-];
+let dogBreeds = [
+    {
+      breedName: "Labrador Retriever",
+      origin: "Canada",
+      lifeSpan: "10-12 years",
+      temperament: "Outgoing, Even Tempered, Gentle, Agile, Kind, Intelligent",
+      img: "",
+    },
+    {
+      breedName: "German Shepherd",
+      origin: "Germany",
+      lifeSpan: "9-13 years",
+      temperament: "Confident, Courageous, Smart, Watchful, Obedient",
+      img: "",
+    },
+    {
+      breedName: "Golden Retriever",
+      origin: "Scotland",
+      lifeSpan: "10-12 years",
+      temperament: "Intelligent, Friendly, Devoted",
+      img: "",
+    },
+    {
+      breedName: "Bulldog",
+      origin: "England",
+      lifeSpan: "8-10 years",
+      temperament: "Docile, Willful, Friendly",
+      img: "",
+    },
+    {
+      breedName: "Poodle",
+      origin: "Germany",
+      lifeSpan: "10-18 years",
+      temperament: "Intelligent, Active, Alert, Faithful, Instinctual",
+      img: "",
+    },
+    {
+      breedName: "Beagle",
+      origin: "England",
+      lifeSpan: "12-15 years",
+      temperament: "Amiable, Even Tempered, Excitable, Determined, Gentle, Intelligent",
+      img: "",
+    },
+    {
+      breedName: "Rottweiler",
+      origin: "Germany",
+      lifeSpan: "8-10 years",
+      temperament: "Good-natured, Devoted, Loyal, Steady, Alert, Confident",
+      img: "",
+    },
+    {
+      breedName: "Yorkshire Terrier",
+      origin: "England",
+      lifeSpan: "11-15 years",
+      temperament: "Bold, Independent, Confident, Intelligent, Courageous",
+      img: "",
+    },
+    {
+      breedName: "Boxer",
+      origin: "Germany",
+      lifeSpan: "10-12 years",
+      temperament: "Playful, Devoted, Bright, Energetic, Calm",
+      img: "",
+    },
+    {
+      breedName: "Dachshund",
+      origin: "Germany",
+      lifeSpan: "12-16 years",
+      temperament: "Clever, Stubborn, Devoted, Lively, Playful",
+      img: "",
+    }
+  ];
+  
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Hello! Here you can find different dog breeds that are popular in the United States.");
 });
 
 app.get("/random", (req, res) => {
-    const randomIndex = Math.floor(Math.random() * countries.length);
-    const randomCountry = countries[randomIndex];
-    res.json(randomCountry);
+    const randomIndex = Math.floor(Math.random() * dogBreeds.length);
+    const randomBreed = dogBreeds[randomIndex];
+    res.json(randomBreed);
   });
 
   app.get('/search/:string', (req, res) => {
     const searchString = req.params.string.toLowerCase();
-    const matchingCountry = countries.find(country => country.countryName.toLowerCase() === searchString);
+    const matchingBreed = dogBreeds.find(breed => breed.breedName.toLowerCase() === searchString);
   
-    if (matchingCountry) {
-      res.json(matchingCountry);
+    if (matchingBreed) {
+      res.json(matchingBreed);
     } else {
-      res.status(404).json({ error: 'Country not found' });
+      res.status(404).json({ error: 'Dog breed not found' });
     }
   });
 
