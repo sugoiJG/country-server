@@ -77,7 +77,7 @@ let dogBreeds = [
   
 
 app.get("/", (req, res) => {
-  res.send("Hello! Here you can find different dog breeds that are popular in the United States.");
+  res.send("Hello! Here you can find different dog breeds that are popular in the United States. Try typing '/search/labrador retriever' after the url to get started.");
 });
 
 app.get("/random", (req, res) => {
